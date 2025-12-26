@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangkok, Thailand - Asia Travel Tours</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+        }
+
+        header {
+            background-color: #0066cc;
+            color: #ffd700;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        .detail-hero {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .detail-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffd700;
+        }
+
+        .detail-hero-overlay h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .detail-hero-overlay p {
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin: 30px 0;
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: #ffd700;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background-color: #0052a3;
+        }
+
+        .detail-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .detail-main {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #0066cc;
+        }
+
+        .detail-main h2 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .detail-main h3 {
+            color: #0066cc;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .detail-main p {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .specialties-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .specialties-list li {
+            padding: 10px;
+            background-color: #f8f9fa;
+            margin-bottom: 10px;
+            border-left: 4px solid #ffd700;
+            color: #333;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .attraction-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 2px solid #0066cc;
+        }
+
+        .attraction-item h4 {
+            color: #0066cc;
+            margin-bottom: 8px;
+        }
+
+        .attraction-item p {
+            color: #666;
+            margin: 0;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .photo-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 2px solid #0066cc;
+        }
+
+        .detail-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .booking-box {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 3px solid #ffd700;
+            text-align: center;
+        }
+
+        .booking-box h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .price-large {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 10px 0;
+        }
+
+        .price-note {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .package-includes {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .package-includes li {
+            padding: 8px 0;
+            color: #333;
+            border-bottom: 1px solid #eee;
+        }
+
+        .book-now-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #ffd700;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .book-now-btn:hover {
+            background-color: #ffed4e;
+        }
+
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #0066cc;
+        }
+
+        .info-box h4 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .info-box p {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #000000;
+            color: #ffd700;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .detail-content {
+                grid-template-columns: 1fr;
+            }
+
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-hero-overlay h1 {
+                font-size: 32px;
+            }
+
+            .detail-hero-overlay p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1> Asia Travel Tours</h1>
+    </header>
+
+    <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1200&h=800&fit=crop" alt="Bangkok">
+        <div class="detail-hero-overlay">
+            <h1>Bangkok, Thailand</h1>
+            <p>City of Angels and Street Food</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Destinations</a>
+
+        <div class="detail-content">
+            <div class="detail-main">
+                <h2>About Bangkok</h2>
+                <p>Bangkok is a vibrant city where ancient temples stand alongside modern skyscrapers. Famous for its street food, ornate shrines, bustling markets, and vibrant nightlife, Bangkok offers an authentic Thai experience.</p>
+
+                <h3>Specialties</h3>
+                <ul class="specialties-list">
+                    <li> Grand Palace and temples</li>
+                    <li> Amazing street food culture</li>
+                    <li> Floating markets</li>
+                    <li> Traditional Thai massage</li>
+                    <li> Vibrant nightlife</li>
+                    <li> Shopping paradise</li>
+                </ul>
+
+                <h3>Top Attractions</h3>
+                <div class="attractions-grid">
+                    <div class="attraction-item">
+                        <h4>Grand Palace</h4>
+                        <p>Stunning royal palace complex</p>
+                    </div>
+                    <div class="attraction-item">
+                        <h4>Wat Arun</h4>
+                        <p>Temple of Dawn by the river</p>
+                    </div>
+                    <div class="attraction-item">
+                        <h4>Chatuchak Market</h4>
+                        <p>Massive weekend market</p>
+                    </div>
+                    <div class="attraction-item">
+                        <h4>Khao San Road</h4>
+                        <p>Famous backpacker street</p>
+                    </div>
+                </div>
+
+                <h3>Photo Gallery</h3>
+                <div class="photo-gallery">
+                    <img src="https://plus.unsplash.com/premium_photo-1693149386423-2e4e264712e5?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bangkok Temple">
+                    <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&h=600&fit=crop" alt="Bangkok Street">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop" alt="Bangkok Market">
+                </div>
+
+                <h3>Best Time to Visit</h3>
+                <p>November to February offers cooler and drier weather, perfect for exploring the city and temples.</p>
+
+                <h3>What to Eat</h3>
+                <p>Pad Thai, Tom Yum Soup, Green Curry, Mango Sticky Rice, and endless street food options!</p>
+            </div>
+
+            <div class="detail-sidebar">
+                <div class="booking-box">
+                    <h3>Package Details</h3>
+                    <div class="price-large">₹55,000</div>
+                    <p class="price-note">Per Person</p>
+                    
+                    <ul class="package-includes">
+                        <li> 5 Days / 4 Nights</li>
+                        <li> 3-Star Hotel</li>
+                        <li> Daily Breakfast</li>
+                        <li> Airport Transfers</li>
+                        <li> Temple Tours</li>
+                        <li> River Cruise</li>
+                    </ul>
+
+                    <a href="booking.html"><button class="book-now-btn">Book Now</button></a>
+                </div>
+
+                <div class="info-box">
+                    <h4>Quick Facts</h4>
+                    <p><strong>Language:</strong> Thai</p>
+                    <p><strong>Currency:</strong> Baht (THB)</p>
+                    <p><strong>Time Zone:</strong> ICT (UTC+7)</p>
+                    <p><strong>Visa:</strong> Visa on Arrival</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

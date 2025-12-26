@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Tickets</title> 
+<script src="auth.js"></script>
+<script>requireLogin();</script>
+<style>
+body{background:#1a1a1a;font-family:Arial;color:white}
+.container{max-width:800px;margin:40px auto}
+.ticket{
+background:white;color:black;padding:15px;
+border-radius:10px;margin-bottom:15px
+}
+h2{text-align:center;color:#ffd700}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>My Booked Tickets</h2>
+<div id="tickets"></div>
+</div>
+
+<script>
+let tickets = JSON.parse(localStorage.getItem("myTickets")) || [];
+let box = document.getElementById("tickets");
+
+if(tickets.length === 0){
+box.innerHTML = "<p style='text-align:center'>No tickets booked</p>";
+}
+
+tickets.forEach(t=>{
+box.innerHTML += `
+<div class="ticket">
+<b>Name:</b> ${t.name}<br>
+<b>Destination:</b> ${t.destination}<br>
+<b>Travel Date:</b> ${t.date}<br>
+<b>People:</b> ${t.people}<br>
+<b>Payment:</b> ${t.payment}<br>
+<b>Booked On:</b> ${t.bookingDate}
+</div>`;
+});
+</script>
+
+</body>
+</html>

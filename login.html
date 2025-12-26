@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Asia Travel Tours</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#1a1a1a;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.login-box{
+background:white;
+padding:30px;
+width:350px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+h2{
+text-align:center;
+color:#0066cc;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin:15px 0 5px;
+font-weight:bold;
+color:#333;
+}
+
+input{
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:20px;
+background:#ffd700;
+border:none;
+border-radius:5px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffed4e;
+}
+
+.error{
+color:red;
+text-align:center;
+margin-top:10px;
+display:none;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:15px;
+color:#0066cc;
+text-decoration:none;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+<h2>Login</h2>
+
+<form onsubmit="login(event)">
+<label>Email</label>
+<input type="email" id="email" required>
+
+<label>Password</label>
+<input type="password" id="password" required>
+
+<button type="submit">Login</button>
+<a href="signup.html" class="back">Create new account</a>
+</form>
+
+<div class="error" id="error">Invalid login details</div>
+
+<script>
+function login(e){
+e.preventDefault();
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+let user = users.find(u => u.email === email && u.password === password);
+
+if(user){
+localStorage.setItem("loggedIn","true");
+localStorage.setItem("userEmail", email);
+window.location.href="index.html";
+}else{
+document.getElementById("error").style.display="block";
+}
+}
+</script>
+
+</body>
+</html>

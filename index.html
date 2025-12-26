@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asia Travel Tours</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER WITH LOGIN / SIGNUP -->
+<header class="top-header">
+    <h1>ASIA TRAVEL TOURS</h1>
+    <div class="auth-links" id="authLinks">
+        <!-- Filled by JS -->
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h2>Explore Asia</h2>
+    <p>Discover amazing destinations across Asia</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <h2>Popular Asia Destinations</h2>
+
+    <div class="search-section">
+        <input type="text" class="search-bar" id="searchBar"
+               placeholder="Search destinations..."
+               onkeyup="searchDestinations()">
+    </div>
+
+    <div class="cards" id="cardsContainer">
+
+        <!-- TOKYO -->
+        <div class="card" data-name="Tokyo, Japan">
+            <div class="card-image">
+                <a href="tokyo.html">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=500" alt="Tokyo">
+                </a>
+            </div>
+            <div class="card-body">
+                <h3>Tokyo, Japan</h3>
+                <p>Modern city with rich culture and tradition</p>
+                <div class="price">₹95,000</div>
+            </div>
+        </div>
+
+        <!-- BALI -->
+        <div class="card" data-name="Bali, Indonesia">
+            <div class="card-image">
+                <a href="bali.html">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500" alt="Bali">
+                </a>
+            </div>
+            <div class="card-body">
+                <h3>Bali, Indonesia</h3>
+                <p>Beautiful beaches and ancient temples</p>
+                <div class="price">₹65,000</div>
+            </div>
+        </div>
+
+        <!-- DUBAI -->
+        <div class="card" data-name="Dubai, UAE">
+            <div class="card-image">
+                <a href="dubai.html">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500" alt="Dubai">
+                </a>
+            </div>
+            <div class="card-body">
+                <h3>Dubai, UAE</h3>
+                <p>Luxury shopping and desert adventure</p>
+                <div class="price">₹75,000</div>
+            </div>
+        </div>
+
+        <!-- BANGKOK -->
+        <div class="card" data-name="Bangkok, Thailand">
+            <div class="card-image">
+                <a href="bangkok.html">
+                    <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=500" alt="Bangkok">
+                </a>
+            </div>
+            <div class="card-body">
+                <h3>Bangkok, Thailand</h3>
+                <p>Vibrant street life and grand palaces</p>
+                <div class="price">₹55,000</div>
+            </div>
+        </div>
+
+        <!-- SINGAPORE -->
+        <div class="card" data-name="Singapore">
+            <div class="card-image">
+                <a href="singapore.html">
+                    <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=500" alt="Singapore">
+                </a>
+            </div>
+            <div class="card-body">
+                <h3>Singapore</h3>
+                <p>Modern city with amazing attractions</p>
+                <div class="price">₹70,000</div>
+            </div>
+        </div>
+
+        <!-- KATHMANDU -->
+        <div class="card" data-name="Kathmandu, Nepal">
+            <div class="card-image">
+                <a href="kathmandu.html">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500" alt="Kathmandu">
+                </a>
+            </div>
+            <div class="card-body">
+                <h3>Kathmandu, Nepal</h3>
+                <p>Himalayan views and spiritual temples</p>
+                <div class="price">₹45,000</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MY RECEIPTS ICON -->
+<a href="myreceipts.html" class="receipt-icon" title="My Receipts">🧾</a>
+
+<!-- CHATBOT -->
+<button class="chatbot-button" onclick="toggleChatbot()">🤖</button>
+
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header">
+        <h3>AI Travel Assistant</h3>
+        <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+        <div class="message bot-message">
+            Hi! I'm your AI Travel Assistant. Ask me about destinations, prices, or booking!
+        </div>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatInput" placeholder="Type your message..."
+               onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="auth.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

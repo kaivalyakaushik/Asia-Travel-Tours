@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up | Asia Travel Tours</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#1a1a1a;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.signup-box{
+background:white;
+padding:30px;
+width:380px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+h2{
+text-align:center;
+color:#0066cc;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin:12px 0 5px;
+font-weight:bold;
+color:#333;
+}
+
+input{
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:20px;
+background:#ffd700;
+border:none;
+border-radius:5px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffed4e;
+}
+
+.message{
+text-align:center;
+margin-top:15px;
+display:none;
+}
+
+.success{color:green}
+.error{color:red}
+
+.back{
+display:block;
+text-align:center;
+margin-top:15px;
+color:#0066cc;
+text-decoration:none;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="signup-box">
+<h2>Create Account</h2>
+
+<form onsubmit="signup(event)">
+<label>Name</label>
+<input type="text" id="name" required>
+
+<label>Email</label>
+<input type="email" id="email" required>
+
+<label>Password</label>
+<input type="password" id="password" required>
+
+<label>Confirm Password</label>
+<input type="password" id="confirm" required>
+
+<button type="submit">Sign Up</button>
+</form>
+
+<div class="message success" id="success">
+Account created successfully! Redirecting to login...
+</div>
+
+<div class="message error" id="error"></div>
+
+<a href="login.html" class="back">Already have an account? Login</a>
+</div>
+
+<script>
+function signup(e){
+e.preventDefault();
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+const confirm = document.getElementById("confirm").value;
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+/* Check if email already exists */
+if(users.find(u => u.email === email)){
+document.getElementById("error").innerText = "Email already registered";
+document.getElementById("error").style.display="block";
+return;
+}
+
+/* Check password match */
+if(password !== confirm){
+document.getElementById("error").innerText = "Passwords do not match";
+document.getElementById("error").style.display="block";
+return;
+}
+
+/* Save user */
+users.push({name,email,password});
+localStorage.setItem("users", JSON.stringify(users));
+
+document.getElementById("error").style.display="none";
+document.getElementById("success").style.display="block";
+
+setTimeout(()=>{
+window.location.href="login.html";
+},2000);
+}
+</script>
+
+</body>
+</html>

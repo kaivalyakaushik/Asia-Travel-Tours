@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Receipts | Asia Travel Tours</title>
+
+<!-- ROUTE PROTECTION -->
+<script src="auth.js"></script>
+<script>
+requireLogin();
+</script>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#1a1a1a;
+color:white;
+}
+
+header{
+background:#0066cc;
+color:#ffd700;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:900px;
+margin:40px auto;
+padding:20px;
+}
+
+h2{
+text-align:center;
+color:#ffd700;
+margin-bottom:30px;
+}
+
+.receipt{
+background:white;
+color:black;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+border:2px solid #0066cc;
+box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+.receipt h3{
+color:#0066cc;
+margin-bottom:10px;
+}
+
+.receipt p{
+margin:6px 0;
+}
+
+.btn{
+margin-top:10px;
+padding:10px 15px;
+background:#ffd700;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#ffed4e;
+}
+
+.empty{
+text-align:center;
+color:#ccc;
+font-size:18px;
+margin-top:60px;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+color:#ffd700;
+text-decoration:none;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Asia Travel Tours</h1>
+</header>
+
+<div class="container">
+<a href="index.html" class="back">← Back to Home</a>
+
+<h2>My Receipts</h2>
+
+<div id="receipts"></div>
+</div>
+
+<script>
+let receipts = JSON.parse(localStorage.getItem("myTickets")) || [];
+let box = document.getElementById("receipts");
+
+if (receipts.length === 0) {
+    box.innerHTML = "<div class='empty'>No receipts found</div>";
+}
+
+receipts.forEach((r, index) => {
+
+    // default status for old bookings
+    if (!r.status) {
+        r.status = "CONFIRMED";
+    }
+
+    box.innerHTML += `
+    <div class="receipt" id="receipt-${index}">
+        <h3>Travel Receipt</h3>
+        <p><b>Name:</b> ${r.name}</p>
+        <p><b>Email:</b> ${r.email}</p>
+        <p><b>Phone:</b> ${r.phone}</p>
+        <p><b>Destination:</b> ${r.destination}</p>
+        <p><b>Travel Date:</b> ${r.date}</p>
+        <p><b>People:</b> ${r.people}</p>
+        <p><b>Payment:</b> ${r.payment}</p>
+        <p><b>Booked On:</b> ${r.bookingDate}</p>
+
+        <p><b>Status:</b>
+            <span style="color:${r.status === 'CANCELLED' ? 'red' : 'green'}">
+                ${r.status}
+            </span>
+        </p>
+
+        ${
+            r.status === "CANCELLED"
+            ? `<button class="btn" disabled style="background:#ccc">
+                   Booking Cancelled
+               </button>`
+            : `<button class="btn" onclick="downloadReceipt(${index})">
+                   Download Receipt
+               </button>
+               <button class="btn" style="background:#ff4444;color:white"
+                       onclick="cancelReceipt(${index})">
+                   Cancel Booking
+               </button>`
+        }
+    </div>
+    `;
+});
+
+function downloadReceipt(index) {
+    let content = document.getElementById(`receipt-${index}`).innerHTML;
+
+    let win = window.open("", "", "width=800,height=600");
+    win.document.write(`
+        <html>
+        <head>
+            <title>Receipt</title>
+            <style>body{font-family:Arial;padding:20px}</style>
+        </head>
+        <body>
+            <h2>Asia Travel Tours</h2>
+            <hr>
+            ${content}
+        </body>
+        </html>
+    `);
+    win.document.close();
+    win.print();
+}
+
+function cancelReceipt(index) {
+    if (!confirm("Are you sure you want to cancel this booking?")) {
+        return;
+    }
+
+    receipts[index].status = "CANCELLED";
+    localStorage.setItem("myTickets", JSON.stringify(receipts));
+
+    location.reload();
+}
+</script>
+
+</body>
+</html>
